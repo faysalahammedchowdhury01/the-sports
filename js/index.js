@@ -25,9 +25,13 @@ const loadTeams = async (teamName) => {
 const loadTeamById = async (id) => {
   teamDetailsContainer.innerHTML = loader;
   const url = `${BASE_URL}/lookupteam.php?id=${id}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  return data.teams[0];
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.teams[0];
+  } catch (error) {
+    alert('Something went wrong!!');
+  }
 };
 
 // display team details
